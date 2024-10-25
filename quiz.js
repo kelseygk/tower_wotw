@@ -1,4 +1,3 @@
-<script>
 (function() {
     let journey = "";
     let currentStep = 0;
@@ -386,4 +385,3 @@
     window.handleFormSubmit = handleFormSubmit;
     window.goBack = goBack;
 })();
-</script>
