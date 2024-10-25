@@ -1,8 +1,9 @@
+<!-- Quiz  -->
+
 (function() {
     let journey = "";
     let currentStep = 0;
 
-    // UPDATED: Modified servicePageUrls to use path suffixes
     const servicePageUrls = [
         ["Strategy Definition", "/strategy-definition"],
         ["Capabilities Mapping", "/capabilities-mapping"],
@@ -12,7 +13,6 @@
         ["BPR + Special Projects", "/bpr-special-projects"],
     ];
 
-    // Original quiz data - unchanged
     const quizData = [
         {
             id: 1,
@@ -93,8 +93,7 @@
                 { value: "uncertain", text: "I'm not sure" }
             ]
         },
-        {     
-            id: 8,
+      {     id: 8,
             header: "Management Practices and Human Capital Support",
             body: "Let's evaluate your team's need for support in implementing management best practices and human capital management.",
             question: "Does your team need hands-on support implementing management best practices (e.g., metrics systems) and with human capital management?",
@@ -106,7 +105,6 @@
         },
     ];
 
-    // All original functions remain unchanged until showResult
     function openDialog(e) {
         if (e) e.preventDefault();
         console.log('Opening dialog');
@@ -114,13 +112,13 @@
         window.location.hash = "";
         resetQuiz();
         
-        let quizLightbox = document.getElementById('quizLightbox');
-        if (quizLightbox) {
-            quizLightbox.style.display = "grid";
-            quizLightbox.showModal();
-            showIntro();
+      	let quizLightbox = document.getElementById('quizLightbox');
+      	if (quizLightbox) {
+ 	      	quizLightbox.style.display = "grid";
+          	quizLightbox.showModal();
+      		showIntro();
         } else {
-            console.error('Quiz lightbox element not found');
+        	console.error('Quiz lightbox element not found');
         }
     }
 
@@ -133,10 +131,17 @@
             if (quizLightbox) {
                 quizLightbox.close();
                 quizLightbox.style.display = 'none';
+                // Ensure any overlay is removed
                 const overlay = document.querySelector('.quiz-overlay');
                 if (overlay) overlay.remove();
-            }
+			}
             window.location.hash = "";
+            //window.scrollTo(0, parseInt(scrollYValue) || 0);
+            
+            // Remove any global event listeners
+            document.removeEventListener('click', globalClickHandler);
+            
+            // Ensure the page is interactive
             document.body.style.pointerEvents = 'auto';
         } catch (error) {
             console.error('Error in closeDialog:', error);
@@ -200,11 +205,12 @@
         }
         
         if (progress) progress.innerHTML = `Question ${currentStep + 1} of ${quizData.length}`;
+
         if (backBtn) backBtn.hidden = currentStep === 0;
+
         if (quizContent) quizContent.setAttribute('aria-label', `Question ${currentStep + 1}: ${stepData.question}`);
     }
 
-    // All question handling functions remain unchanged
     function handleFormSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -228,7 +234,6 @@
         }
     }
 
-    // Question handling functions remain unchanged
     function handleQuestion1(value) {
         switch (value) {
             case "a Transformation":
@@ -245,10 +250,93 @@
         }
     }
 
-    [... other handleQuestion functions remain unchanged ...]
+    function handleQuestion2(value) {
+        switch (value) {
+            case "yes": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "no": case "uncertain": 
+                showResult(0);
+                break;
+        }
+    }
 
-    // UPDATED: Modified showResult function with new URL construction and journey text styling
-    function showResult(serviceIndex) {
+    function handleQuestion3(value) {
+        switch (value) {
+            case "yes": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "no": case "uncertain": 
+                showResult(1);
+                break;
+        }
+    }
+
+    function handleQuestion4(value) {
+        switch (value) {
+            case "yes": case "not-concerned": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "no": case "uncertain": 
+                showResult(2);
+                break;
+        }
+    }
+
+    function handleQuestion5(value) {
+        switch (value) {
+            case "yes": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "no": case "uncertain": 
+                showResult(3);
+                break;
+        }
+    }
+
+    function handleQuestion6(value) {
+        switch (value) {
+            case "yes": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "no": case "uncertain": 
+                showResult(4);
+                break;
+        }
+    }
+
+    function handleQuestion7(value) {
+        switch (value) {
+            case "yes": 
+                showResult(5);
+                break;
+            case "no": 
+                currentStep++;
+                showStep(quizData[currentStep]);
+                break;
+            case "uncertain": 
+                showResult(5);
+                break;
+        }
+    }
+
+    function handleQuestion8(value) {
+        switch (value) {
+            case "yes": case "uncertain": 
+                showResult(5);
+                break;
+            case "no": 
+                showNoMatch();
+                break;
+        }
+    }
+
+  function showResult(serviceIndex) {
         try {
             const [service, pathSuffix] = servicePageUrls[serviceIndex];
             
@@ -293,8 +381,14 @@
             console.error('Error in showResult:', error);
         }
     }
+            
+            // Ensure the page is interactive
+            document.body.style.pointerEvents = 'auto';
+        } catch (error) {
+            console.error('Error in showResult:', error);
+        }
+    }
 
-    // No changes to showNoMatch function
     function showNoMatch() {
         try {
             const quizContent = document.getElementById('quizContent');
@@ -305,27 +399,27 @@
                 result.innerHTML = `
                     <div class="slide__inner">
                         <h2 class="slide__heading">Let's chat.</h2>
-                        <p>Your needs may sit outside of our core services. Reach out to us for a one-on-one consultation to more precisely discuss and evaluate fit.</p>
-                        <div class="quiz-button-container">
-                            <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button>
+                        <p>Your needs may sit outside of our core services. Reach out to us for a one-on-one consultation to more precisely discuss and evaluate fit.
+</p>
+                        <div class="quiz-button-container">    <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button>
                             <a href="/contact" class="slide__button">Contact Us</a>
-                        </div>
+  </div>
                     </div>
                 `;
                 const retakeQuizBtn = document.getElementById('retakeQuizBtn');
                 if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', resetAndBeginQuiz);
             }
             
+            // Ensure the page is interactive
             document.body.style.pointerEvents = 'auto';
         } catch (error) {
             console.error('Error in showNoMatch:', error);
         }
     }
 
-    // All remaining functions unchanged
     function resetAndBeginQuiz() {
         resetQuiz();
-        beginQuiz();
+beginQuiz();
     }
 
     function goBack() {
@@ -365,14 +459,17 @@
             console.log('Initializing quiz');
             attachEventListeners();
             
+            // Use a more specific approach for the open button
             const openQuizBtn = document.getElementById('openQuizBtn');
             if (openQuizBtn) {
                 openQuizBtn.addEventListener('click', openDialog);
             } else {
+                // Fallback to global listener if button doesn't exist yet
                 document.addEventListener('click', globalClickHandler);
             }
         } catch (error) {
-            console.error('Error in initQuiz:', error);}
+            console.error('Error in initQuiz:', error);
+        }
     }
 
     // Run initQuiz on DOMContentLoaded and after a short delay
@@ -385,3 +482,4 @@
     window.handleFormSubmit = handleFormSubmit;
     window.goBack = goBack;
 })();
+</script>
