@@ -1,5 +1,4 @@
-<!-- Quiz  -->
-
+<script>
 (function() {
     let journey = "";
     let currentStep = 0;
@@ -336,7 +335,8 @@
         }
     }
 
-  function showResult(serviceIndex) {
+
+    function showResult(serviceIndex) {
         try {
             const [service, pathSuffix] = servicePageUrls[serviceIndex];
             
@@ -381,14 +381,8 @@
             console.error('Error in showResult:', error);
         }
     }
-            
-            // Ensure the page is interactive
-            document.body.style.pointerEvents = 'auto';
-        } catch (error) {
-            console.error('Error in showResult:', error);
-        }
-    }
 
+    // No changes to showNoMatch function
     function showNoMatch() {
         try {
             const quizContent = document.getElementById('quizContent');
@@ -399,27 +393,27 @@
                 result.innerHTML = `
                     <div class="slide__inner">
                         <h2 class="slide__heading">Let's chat.</h2>
-                        <p>Your needs may sit outside of our core services. Reach out to us for a one-on-one consultation to more precisely discuss and evaluate fit.
-</p>
-                        <div class="quiz-button-container">    <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button>
+                        <p>Your needs may sit outside of our core services. Reach out to us for a one-on-one consultation to more precisely discuss and evaluate fit.</p>
+                        <div class="quiz-button-container">
+                            <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button>
                             <a href="/contact" class="slide__button">Contact Us</a>
-  </div>
+                        </div>
                     </div>
                 `;
                 const retakeQuizBtn = document.getElementById('retakeQuizBtn');
                 if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', resetAndBeginQuiz);
             }
             
-            // Ensure the page is interactive
             document.body.style.pointerEvents = 'auto';
         } catch (error) {
             console.error('Error in showNoMatch:', error);
         }
     }
 
+    // All remaining functions unchanged
     function resetAndBeginQuiz() {
         resetQuiz();
-beginQuiz();
+        beginQuiz();
     }
 
     function goBack() {
@@ -459,20 +453,17 @@ beginQuiz();
             console.log('Initializing quiz');
             attachEventListeners();
             
-            // Use a more specific approach for the open button
             const openQuizBtn = document.getElementById('openQuizBtn');
             if (openQuizBtn) {
                 openQuizBtn.addEventListener('click', openDialog);
             } else {
-                // Fallback to global listener if button doesn't exist yet
                 document.addEventListener('click', globalClickHandler);
             }
         } catch (error) {
-            console.error('Error in initQuiz:', error);
+            console.error('Error in initQuiz:', error); 
         }
     }
-
-    // Run initQuiz on DOMContentLoaded and after a short delay
+// Run initQuiz on DOMContentLoaded and after a short delay
     document.addEventListener('DOMContentLoaded', initQuiz);
     setTimeout(initQuiz, 1000); // Run again after 1 second to ensure all elements are loaded
 
