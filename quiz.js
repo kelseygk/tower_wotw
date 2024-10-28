@@ -395,7 +395,7 @@
                         <p>Your needs may sit outside of our core services. Reach out to us for a one-on-one consultation to more precisely discuss and evaluate fit.</p>
                         <div class="quiz-button-container">
                             <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button>
-                            <a href="/contact" class="slide__button">Contact Us</a>
+                            <a href="/contact-us" class="slide__button">Contact Us</a>
                         </div>
                     </div>
                 `;
