@@ -4,11 +4,11 @@
 
     const servicePageUrls = [
         ["Strategy Definition", "/strategy-definition"],
-        ["Capabilities Mapping", "/capabilities-mapping"],
-        ["Org + Workforce Design", "/org-workforce-design"],
-        ["Change Management", "/change-management"],
-        ["PMO + Governance", "/change-governance"],
-        ["BPR + Special Projects", "/bpr-special-projects"],
+        ["Capabilities Mapping + Change Program Design", "/capabilities-mapping"],
+        ["Organizational Design + Workforce Planning", "/org-workforce-design"],
+        ["Change Management Planning", "/change-management"],
+        ["PMO + Governance", "/pmo-governance"],
+        ["BPR + Management Best Practice Integration", "/bpr-special-projects"],
     ];
 
     const quizData = [
