@@ -335,52 +335,48 @@
     }
 
 
-    function showResult(serviceIndex) {
-        try {
-            const [service, pathSuffix] = servicePageUrls[serviceIndex];
-            
-            // Convert journey string to URL-friendly format
-            const journeyType = journey.toLowerCase()
-                .replace('a ', '')
-                .replace('an ', '')
-                .trim();
-            
-            // Construct the full URL
-            let url;
-            if (service === "Strategy Definition") {
-                url = new URL(pathSuffix, window.location.href);
-            } else {
-                url = new URL(`/services/${journeyType}${pathSuffix}`, window.location.href);
-            }
+   function showResult(serviceIndex) {
+    try {
+        const [service, pathSuffix] = servicePageUrls[serviceIndex];
+        
+        // Convert journey string to URL-friendly format while preserving the original journey type
+        let journeyType = journey.toLowerCase()
+            .replace('a ', '')
+            .replace('an ', '')
+            .trim();
 
-            const quizContent = document.getElementById('quizContent');
-            const result = document.getElementById('result');
-            if (quizContent) quizContent.hidden = true;
-            if (result) {
-                result.hidden = false;
-                result.innerHTML = `
-                    <div class="slide__inner">
-                        <h2 class="slide__heading">Understood.</h2>
-                        <p>Thank you for your input. It looks like you're on <span class="slide__slot--journey">${journey.split(' ').map((word, index) => 
-                            index === 0 ? word : `<strong>${word}</strong>`).join(' ')}</span> Journey,
-                        and we recommend <span class="slide__slot--service">${service}</span> as the next step for your organization.</p>
-                        <p>Click the Learn More button below to see how Tower Strategy Group can assist in this phase of your improvement.</p>
-                        <div class="quiz-button-container"> 
-                            <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button> 
-                            <a href="${url.toString()}" class="slide__button">Learn More</a>
-                        </div>
+        // Construct the full URL
+        let url;
+        // All services should include the journey type in the URL path
+        url = new URL(`/services/${journeyType}${pathSuffix}`, window.location.href);
+
+        const quizContent = document.getElementById('quizContent');
+        const result = document.getElementById('result');
+        if (quizContent) quizContent.hidden = true;
+        if (result) {
+            result.hidden = false;
+            result.innerHTML = `
+                <div class="slide__inner">
+                    <h2 class="slide__heading">Understood.</h2>
+                    <p>Thank you for your input. It looks like you're on <span class="slide__slot--journey">${journey.split(' ').map((word, index) => 
+                        index === 0 ? word : `<strong>${word}</strong>`).join(' ')}</span> Journey,
+                    and we recommend <span class="slide__slot--service">${service}</span> as the next step for your organization.</p>
+                    <p>Click the Learn More button below to see how Tower Strategy Group can assist in this phase of your improvement.</p>
+                    <div class="quiz-button-container"> 
+                        <button id="retakeQuizBtn" class="slide__button">Retake Quiz</button> 
+                        <a href="${url.toString()}" class="slide__button">Learn More</a>
                     </div>
-                `;
-                const retakeQuizBtn = document.getElementById('retakeQuizBtn');
-                if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', resetAndBeginQuiz);
-            }
-            
-            document.body.style.pointerEvents = 'auto';
-        } catch (error) {
-            console.error('Error in showResult:', error);
+                </div>
+            `;
+            const retakeQuizBtn = document.getElementById('retakeQuizBtn');
+            if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', resetAndBeginQuiz);
         }
+        
+        document.body.style.pointerEvents = 'auto';
+    } catch (error) {
+        console.error('Error in showResult:', error);
     }
-
+}
     // No changes to showNoMatch function
     function showNoMatch() {
         try {
