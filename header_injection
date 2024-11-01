@@ -1,0 +1,79 @@
+<!-- Core Libraries -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<!-- External Style Dependencies -->
+<link href="https://cdn.jsdelivr.net/gh/willmyerscode/nested-folders@1/nested-folders.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/sectionLoader@2/sectionLoader.min.css" rel="stylesheet">
+
+<!-- External Script Dependencies -->
+<script src="https://cdn.jsdelivr.net/gh/kelseygk/tower_wotw@main/quiz.js"></script>
+
+<!-- Scroll Functionality -->
+<script>
+function scrollDown() {
+    const $targetSection = $("section:nth-child(2)");
+    
+    if ($targetSection.length) {
+        const offset = $targetSection.offset().top - (window.innerHeight * 0.15);
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+        });
+    }
+}
+
+$(document).ready(function() {
+    $('.scroll-down a').on('click', function(e) {
+        e.preventDefault();
+        // Stop any ongoing animations before starting new one
+        $('html, body').stop(true, false);
+        scrollDown();
+    });
+});
+</script>
+
+<!-- Current Link Handler -->
+<script>
+    $("a[href*='" + location.pathname + "']").addClass("current");
+</script>
+
+<!-- Back to Top Button -->
+<div id="scroll-here"></div>
+<a id="back-to-top" href="#scroll-here">
+    <img src="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' aria-labelledby='title' aria-describedby='desc' role='img' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3EAngle Up%3C/title%3E%3Cdesc%3EA line styled icon from Orion Icon Library.%3C/desc%3E%3Cpath data-name='layer1' fill='none' stroke='%23202020' stroke-miterlimit='10' stroke-width='2' d='M20 40l11.994-14L44 40' stroke-linejoin='round' stroke-linecap='round'%3E%3C/path%3E%3C/svg%3E" alt="Angle Up" />
+</a>
+
+<!-- Back to Top Script -->
+<script>
+$(function(){
+    // Show Back to Top Button
+    function showBackToTop() {
+        $('#back-to-top').addClass('show-btt');
+    }
+    
+    // Hide Back to Top Button
+    function hideBackToTop() {
+        $('#back-to-top').removeClass('show-btt');
+    }
+    
+    // Check Scroll Position
+    function checkScrollPos() {
+        if ($(this).scrollTop() >= 700) {
+            showBackToTop();
+        } else {
+            hideBackToTop();
+        }
+    }
+    
+    // Bind scroll event
+    $(window).on('scroll', function() {
+        checkScrollPos();
+    });
+    
+    // Initial check on page load
+    checkScrollPos();
+});
+</script>
+
+<!-- In header -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/css/perfect-scrollbar.min.css" rel="stylesheet">
