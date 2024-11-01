@@ -1,0 +1,162 @@
+<!-- External Script Dependencies -->
+<script src="https://cdn.jsdelivr.net/gh/willmyerscode/nested-folders@1/nested-folders.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/BlogPostBanner@3/javascript.min.js"></script>
+<script src="//assets.squarewebsites.org/lazy-summaries/lazy-summaries.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/willmyethewebsiteguy/sectionLoader@2/sectionLoader.min.js"></script>
+
+
+<!-- Blog Pagination Text Updater -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const olderPostsLink = document.querySelector('.blog-list-pagination .older a');
+    const newPostsLink = document.querySelector('.blog-list-pagination .newer a');
+    
+    if (olderPostsLink) {
+        olderPostsLink.textContent = 'Previous Posts >';
+    }
+    if (newPostsLink) {
+        newPostsLink.textContent = '< Recent Posts';
+    }
+});
+</script>
+
+<!-- Portfolio Items in Summary Block -->
+<script>
+!async function(){
+    const fetchJson = async url => {
+        const response = await fetch(url);
+        return response.json();
+    };
+
+    function updateSummaryItems(block, items) {
+        const summaryItems = block.querySelectorAll(".summary-item");
+        block.classList.add("wm-portfolio-in-summary");
+        let index = 0;
+        
+        summaryItems.forEach(item => {
+            if (index > items.length - 1) index = 0;
+            const portfolioItem = items[index];
+            index++;
+
+            const img = item.querySelector(".summary-thumbnail img");
+            const thumbnailLink = item.querySelector("a.summary-thumbnail-container");
+            const titleLink = item.querySelector(".summary-title-link");
+            const excerpt = item.querySelector(".summary-excerpt");
+            const fullUrl = portfolioItem.fullUrl;
+
+            if (img) {
+                img.src = portfolioItem.assetUrl;
+                img.dataset.src = portfolioItem.assetUrl;
+                img.dataset.imageDimensions = portfolioItem.originalSize;
+                img.dataset.image = portfolioItem.assetUrl;
+                img.alt = portfolioItem.title;
+                
+                const {x, y} = portfolioItem.mediaFocalPoint;
+                img.style.objectPosition = `${100*x}% ${100*y}%`;
+            }
+
+            if (thumbnailLink) thumbnailLink.href = fullUrl;
+            if (titleLink) {
+                titleLink.innerText = portfolioItem.title;
+                titleLink.href = fullUrl;
+            }
+            if (excerpt) excerpt.innerHTML = portfolioItem.excerpt;
+        });
+    }
+
+    const portfolioBlocks = document.querySelectorAll('[data-wm-plugin="portfolio-in-summary"]');
+    for (const block of portfolioBlocks) {
+        const summaryBlock = document.querySelector(block.dataset.block);
+        const portfolioData = await fetchJson(`${block.dataset.portfolioUrl}?format=json&t=${Date.now()}`);
+        
+        if (!summaryBlock || !portfolioData.items) return;
+        updateSummaryItems(summaryBlock, portfolioData.items);
+    }
+}();
+</script>
+
+<!-- Nested Folders Implementation -->
+<script>
+(function() {
+    let folders;
+
+    function rebuildAnchor(folder) {
+        const parent = folder.closest('.header-nav-item--folder');
+        const href = folder.href.includes('.com') ? 
+            folder.href.split('.com')[1].replace("-folder/", "") : 
+            folder.href.replace("-folder/", "");
+        const anchorClone = folder.cloneNode(true);
+
+        anchorClone.classList.add('clickable-folder');
+        anchorClone.setAttribute('href', href);
+        parent.insertAdjacentElement('afterbegin', anchorClone);
+        
+        if (href === window.location.pathname) {
+            anchorClone.closest('.header-nav-item--folder').classList.add('header-nav-item--active');
+        }
+    }
+
+    function addToMobile(folder) {
+        const href = folder.getAttribute("href");
+        const hrefAdjusted = href.includes('.com') ? 
+            href.split('.com')[1].replace("-folder/", "") : 
+            href.replace("-folder/", "");
+        const text = folder.innerText;
+        const mobileFolder = document.querySelector(`[data-folder="${href}"]`);
+        const backButton = mobileFolder.querySelector(".header-menu-nav-folder-content > *:first-of-type");
+        
+        const allButton = `
+            <div class="container header-menu-nav-item header-menu-nav-item--external">
+                <a href="${hrefAdjusted}">${text}</a>
+            </div>
+        `;
+
+        backButton.insertAdjacentHTML('afterend', allButton);
+    }
+
+    function setFolderLinks() {
+        folders = document.querySelectorAll('.header-display-desktop .header-nav-folder-title[href*="-folder/"]');
+        
+        folders.forEach(folder => {
+            window.addEventListener('load', () => {
+                addToMobile(folder);
+                rebuildAnchor(folder);
+                folder.remove();
+            });
+        });
+    }
+
+    setFolderLinks();
+})();
+</script>
+
+<!-- Dropdown Toggle -->
+<script>
+$(function() {
+    $('.list-item-content__description p:has(u)').click(function() {
+        $(this).nextUntil('p:has(u)').slideToggle();
+        $(this).find('u').toggleClass('open-dropdown');
+    });
+});
+</script>
+
+
+<!-- At the end of footer -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navElements = document.querySelectorAll('.services-nav');
+    
+    navElements.forEach(nav => {
+        if (nav) {
+            const ps = new PerfectScrollbar(nav, {
+                suppressScrollY: true,
+                useBothWheelAxes: true,
+                wheelPropagation: true,
+                swipeEasing: true,
+                minScrollbarLength: 50
+            });
+        }
+    });
+});
+</script>
