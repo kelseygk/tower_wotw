@@ -691,6 +691,298 @@ section[data-section-id="670723522a973c025d4eb1d5"] {
     padding-bottom: 40px!important;
   }}
 
+section[data-section-id="670723522a973c025d4eb1d5"]
+{
+  .list-section-title  {
+    position: relative;
+    top-margin: -5px !important;
+  }
+  
+  .user-items-list-carousel__media-container {
+    position: relative;
+  }
+  
+  .user-items-list-carousel__media-inner {
+    filter: grayscale(1);
+  }
+  
+  .user-items-list-carousel__media-inner:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    67deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0) 100%),
+    linear-gradient(
+      0deg,
+      rgba(217, 217, 217, 0.25) 0%,
+      rgba(217, 217, 217, 0.25) 100%);
+  pointer-events: none;
+  z-index: 9 !important;
+  }
+  
+  .user-items-list-carousel__gutter {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .user-items-list-carousel__slide {
+    display: block;
+  }
+  
+  .list-item-content {
+    position: absolute;
+    display: inline-block;
+    margin-top: -45px;
+    margin-left: 10px;
+    width: 95%;
+  }
+  
+  .list-item-content__title {
+    color: white !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Poppins';
+  }
+  
+  .arrows-bottom {
+    grid-gap: 0 !important;
+  }
+  
+  .user-items-list-carousel__arrow-button {
+    width: 100px;
+  }
+  
+  .user-items-list-carousel__arrow-icon-background-area,
+  .mobile-arrow-icon-background-area
+  {
+    display: none;
+  }
+  
+  .user-items-list-carousel__arrow-icon {
+    width: 64px !important;
+    height: 64px !important;
+  } 
+  
+  .mobile-arrows {
+padding-right: 5.5vw;
+  }
+  
+  .mobile-arrow-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .user-items-list-carousel__arrow-icon-path {
+    stroke-width: 1px !important;
+}
+  
+  .user-items-list-carousel__arrow-icon-path:nth-child(2) {
+    stroke: none !important;
+  }
+  
+
+  .mobile-arrow-icon-path:nth-child(2) {
+    stroke: none !important;
+  }
+  
+  /* Make list images clickable */
+li.list-item {
+    position: relative !important;
+}
+.list-item-content__button-container {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+a.list-item-content__button.sqs-block-button-element {
+    position: absolute;
+    top: -32vh;
+    left: 0;
+    width: 27vw;
+    height: 32vh;
+    z-index: 9999;
+    color: transparent !important;
+    background-color: transparent !important;
+  border: transparent !important;
+}
+  
+  .user-items-list-carousel .mobile-arrows {
+    margin-top: 8px;
+    justify-content: end;
+  }
+  }}
+//case studies
+section[data-section-id="66f8a0636ba3637b733d9e25"] {
+.summary-thumbnail-container {
+    position: relative;
+  }
+  
+  .summary-thumbnail {
+    filter: grayscale(1);
+  }
+  
+  .summary-thumbnail:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      67deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0) 100%),
+      linear-gradient(
+        0deg,
+        rgba(217, 217, 217, 0.25) 0%,
+        rgba(217, 217, 217, 0.25) 100%);
+    pointer-events: none;
+    z-index: 9 !important;
+  }
+
+  .summary-content {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    width: 100%;
+  }
+
+.summary-title {
+  font-family: var(--heading-font-font-family);
+  color: white !important;
+  font-size: 2rem !important;
+}
+  }
+
+//insights
+section[data-section-id="66f8a47503d3f8392e859bae"] {
+.summary-title {
+  color: @black !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: 'Poppins';
+}
+}
+
+/*-----------------------------------
+ *  fu.sion
+ *---------------------------------*/
+
+section[data-section-id="66ff41d741750c3ec2cf2260"] {
+  .sqs-button-element--primary {
+    border-color: white !important;
+    color: white !important;
+  }
+  
+  .sqs-button-element--primary:hover {
+    border-color: black !important;
+  }
+}
+
+/*-----------------------------------
+ *  SERVICES
+ *---------------------------------*/
+
+section[data-current-styles*='"customSectionHeight": 70'] {
+  min-height: 100vh;
+}
+
+.services-nav {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 1rem 1rem 0rem;
+  text-align: center !important;
+ position: relative !important;  
+ overflow: hidden !important; 
+ white-space: nowrap;
+  
+  /* Hide default scrollbar */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  li::marker {
+    content: '';
+  }
+  
+  li {
+    display: inline-block;
+    font-family: 'Poppins';
+    padding-right: 2vw;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: 0.3s ease;
+    text-wrap: nowrap;
+  }
+  
+  li:hover {
+    color: @orange;
+  }
+  
+  .current {
+    color: @orange;
+  }
+}
+
+/* Perfect Scrollbar custom styling */
+.ps__rail-x {
+  height: 10px !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  opacity: 1 !important;
+  bottom: 0 !important;
+}
+
+.ps__thumb-x {
+  background: @orange !important;
+  border-radius: 10px !important;
+  height: 10px !important;
+  bottom: 0 !important;
+}
+
+/* Hover state */
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+  background: @light !important;
+}
+
+/* Ensure scrollbar is always visible */
+.ps .ps__rail-x {
+  opacity: 1 !important;
+}
+
+/* Additional mobile-specific styles */
+@media only screen and (max-width: 640px) {
+  .services-nav {
+    padding-bottom: 1.5rem; /* Extra space for scrollbar */
+  }
+  
+  .ps__rail-x {
+    display: block !important;
+    opacity: 1 !important;
+  }
+}
+
+
+/*---------------------------------
+ *  SECTORS
+ *---------------------------------*/
+
 //home page - sectors
 section[data-section-id="670723522a973c025d4eb1d5"],
 //sectors page - public sectors
@@ -824,172 +1116,6 @@ a.list-item-content__button.sqs-block-button-element {
   }
 }
 
-//case studies
-section[data-section-id="66f8a0636ba3637b733d9e25"] {
-.summary-thumbnail-container {
-    position: relative;
-  }
-  
-  .summary-thumbnail {
-    filter: grayscale(1);
-  }
-  
-  .summary-thumbnail:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      67deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0) 100%),
-      linear-gradient(
-        0deg,
-        rgba(217, 217, 217, 0.25) 0%,
-        rgba(217, 217, 217, 0.25) 100%);
-    pointer-events: none;
-    z-index: 9 !important;
-  }
-
-  .summary-content {
-    position: absolute;
-    top: 50%;
-    transform: translatey(-50%);
-    width: 100%;
-  }
-
-.summary-title {
-  font-family: var(--heading-font-font-family);
-  color: white !important;
-  font-size: 2rem !important;
-}
-}
-
-//insights
-section[data-section-id="66f8a47503d3f8392e859bae"] {
-.summary-title {
-  color: @black !important;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-family: 'Poppins';
-}
-}
-}
-
-/*-----------------------------------
- *  fu.sion
- *---------------------------------*/
-
-section[data-section-id="66ff41d741750c3ec2cf2260"] {
-  .sqs-button-element--primary {
-    border-color: white !important;
-    color: white !important;
-  }
-  
-  .sqs-button-element--primary:hover {
-    border-color: black !important;
-  }
-}
-
-/*-----------------------------------
- *  SERVICES
- *---------------------------------*/
-
-section[data-current-styles*='"customSectionHeight": 70'] {
-  min-height: 100vh;
-}
-
-.services-nav {
-  display: flex;
-  flex-direction: row;
-  padding: 1rem 1rem 1rem 0rem;
-  text-align: center !important;
- position: relative !important;  
- overflow: hidden !important; 
- white-space: nowrap;
-  
-  /* Hide default scrollbar */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  
-  li::marker {
-    content: '';
-  }
-  
-  li {
-    display: inline-block;
-    font-family: 'Poppins';
-    padding-right: 2vw;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    text-decoration: none !important;
-    transition: 0.3s ease;
-    text-wrap: nowrap;
-  }
-  
-  li:hover {
-    color: @orange;
-  }
-  
-  .current {
-    color: @orange;
-  }
-}
-
-/* Perfect Scrollbar custom styling */
-.ps__rail-x {
-  height: 10px !important;
-  background: rgba(255, 255, 255, 0.3) !important;
-  border-radius: 10px !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  opacity: 1 !important;
-  bottom: 0 !important;
-}
-
-.ps__thumb-x {
-  background: @orange !important;
-  border-radius: 10px !important;
-  height: 10px !important;
-  bottom: 0 !important;
-}
-
-/* Hover state */
-.ps__rail-x:hover > .ps__thumb-x,
-.ps__rail-x:focus > .ps__thumb-x,
-.ps__rail-x.ps--clicking .ps__thumb-x {
-  background: @light !important;
-}
-
-/* Ensure scrollbar is always visible */
-.ps .ps__rail-x {
-  opacity: 1 !important;
-}
-
-/* Additional mobile-specific styles */
-@media only screen and (max-width: 640px) {
-  .services-nav {
-    padding-bottom: 1.5rem; /* Extra space for scrollbar */
-  }
-  
-  .ps__rail-x {
-    display: block !important;
-    opacity: 1 !important;
-  }
-}
-
-
-/*---------------------------------
- *  SECTORS
- *---------------------------------*/
-
 section[data-section-id="66ff1bf99a2bbf4434673a60"] {
   display: none;
 }
@@ -1042,24 +1168,6 @@ section[data-section-id="6709c49ac1c0f93eddf6fda0"] {
   .user-items-list-carousel__arrow-button--hidden {
     opacity: 1 !important;
   }
-}
-
-@media screen and (max-width:767px) {
-  
-  .header-menu-nav-item--active>a[data-folder-id] .header-menu-nav-item-content span:not(.chevron) {text-decoration:none;}
-
-
- .item-pagination-title  {font-size: 15px!important;
-  }
-  
-  @media screen and (max-width: 767px) {
-    .item-pagination--prev-next {
-        padding: 3vw 3vw;
-    }
-    
-    .item-pagination-link .item-pagination-icon {padding-right: 5px;
-    padding-left: 5px;}
-}
 }
 
 
@@ -1227,12 +1335,6 @@ section[data-section-id="671c08dfd792c623c64c9d9b"] {
   font-size: 2.6em;
 }
 }
-
-
-
-/*-----------------------------* 
-Sectors
-*-----------------------------*/
 
 
 
