@@ -779,30 +779,32 @@ section[data-section-id="66ff41d741750c3ec2cf2260"] {
 section[data-current-styles*='"customSectionHeight": 70'] {
   min-height: 100vh;
 }
-.services-nav {
+
+ .services-nav {
   display: flex;
   flex-direction: row;
   padding: 1rem 1rem 1rem 0rem;
   text-align: center !important;
- position: relative !important;  
- overflow: hidden !important; 
- white-space: nowrap;
-  
+  position: relative !important;  
+  overflow-x: auto !important; 
+  overflow-y: hidden !important;
+  white-space: nowrap;
+
   /* Hide default scrollbar */
   &::-webkit-scrollbar {
     display: none;
   }
   scrollbar-width: none;
   -ms-overflow-style: none;
-  
+
   li::marker {
     content: '';
   }
-  
+
   li {
     display: inline-block;
     font-family: 'Poppins';
-    padding-right: 2vw;
+    padding-right: 3vw;
     font-style: normal;
     font-weight: 600;
     font-size: 0.9rem;
@@ -811,52 +813,72 @@ section[data-current-styles*='"customSectionHeight": 70'] {
     transition: 0.3s ease;
     text-wrap: nowrap;
   }
-  
+
   li:hover {
     color: @orange;
   }
-  
+
   .current {
     color: @orange;
   }
 }
-/* Perfect Scrollbar custom styling */
-.ps__rail-x {
-  height: 10px !important;
-  background: rgba(255, 255, 255, 0.3) !important;
-  border-radius: 10px !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  opacity: 1 !important;
-  bottom: 0 !important;
+
+/* Custom scrollbar styling */
+.simplebar-track.simplebar-horizontal {
+    height: 10px !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    bottom: 0 !important;
 }
-.ps__thumb-x {
-  background: @orange !important;
-  border-radius: 10px !important;
-  height: 10px !important;
-  bottom: 0 !important;
+/* Orange scrollbar thumb */
+.simplebar-scrollbar::before {
+    background: @orange !important;
+    border-radius: 10px !important;
+    height: 10px !important;
+    opacity: 1 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+}
+.simplebar-scrollbar.simplebar-visible:before {
+    opacity: 1 !important;
 }
 /* Hover state */
-.ps__rail-x:hover > .ps__thumb-x,
-.ps__rail-x:focus > .ps__thumb-x,
-.ps__rail-x.ps--clicking .ps__thumb-x {
-  background: @light !important;
+.simplebar-scrollbar:hover::before {
+    background: @light !important;
 }
 /* Ensure scrollbar is always visible */
-.ps .ps__rail-x {
-  opacity: 1 !important;
-}
-/* Additional mobile-specific styles */
-@media only screen and (max-width: 640px) {
-  .services-nav {
-    padding-bottom: 1.5rem; /* Extra space for scrollbar */
-  }
-  
-  .ps__rail-x {
-    display: block !important;
+.simplebar-track {
     opacity: 1 !important;
-  }
 }
+
+/* Mobile-specific styles */
+@media only screen and (max-width: 640px) {
+    .services-nav {
+        padding-bottom: 1.5rem;
+        position: relative;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .simplebar-track.simplebar-horizontal {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .simplebar-content-wrapper {
+        overflow-x: auto !important;
+    }
+}
+/* Hide default scrollbar for WebKit browsers */
+.simplebar-content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+@media only screen and (min-width: 1500px) { .simplebar-track.simplebar-horizontal {display: none;}}
+
 /*---------------------------------
  *  SECTORS
  *---------------------------------*/
