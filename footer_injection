@@ -140,21 +140,31 @@ $(function() {
 });
 </script>
 
-
-<!-- At the end of footer -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+<!-- Service Scrollbar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/6.2.5/simplebar.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const navElements = document.querySelectorAll('.services-nav');
     
     navElements.forEach(nav => {
-        if (nav) {
-            const ps = new PerfectScrollbar(nav, {
-                suppressScrollY: true,
-                useBothWheelAxes: true,
-                wheelPropagation: true,
-                swipeEasing: true,
-                minScrollbarLength: 50
+        const simpleBar = new SimpleBar(nav, {
+            autoHide: false,
+            direction: window.localStorage.getItem('direction') || 'ltr',
+            clickOnTrack: false,
+            forceVisible: 'x'
+        });
+
+        // Center the active item
+        const activeItem = nav.querySelector('.current');
+        if (activeItem && window.innerWidth <= 640) {
+            const scrollElement = simpleBar.getScrollElement();
+            const navWidth = scrollElement.clientWidth;
+            const itemLeft = activeItem.offsetLeft;
+            const itemWidth = activeItem.offsetWidth;
+            
+            scrollElement.scrollTo({
+                left: itemLeft - (navWidth / 2) + (itemWidth / 2),
+                behavior: 'smooth'
             });
         }
     });
